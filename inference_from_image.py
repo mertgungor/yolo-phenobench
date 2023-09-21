@@ -59,12 +59,13 @@ def im_show(image):
 
 
 model = YOLO('yolov8n-seg.pt')  # load an official model
-model = YOLO('runs/segment/train11/weights/best.pt')  # load an official model
-path  = "/home/mert/phenobench-baselines/PhenoBench-v100/PhenoBench/test/images/"
+model = YOLO('best.pt')  # load an official model
+current_dir = os.getcwd()
+path  = current_dir + "/datasets/phenobench/images/train"
 
-for image in os.listdir("/home/mert/phenobench-baselines/PhenoBench-v100/PhenoBench/test/images"):
+for image in os.listdir(path):
 
-    result = model(path + image)
+    result = model(path + '/' + image)
 
     try:
         show_mask(result)
